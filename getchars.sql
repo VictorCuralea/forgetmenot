@@ -1,8 +1,8 @@
-I need all distinct characters that appear in a column in a mysql table, sorted asc
+-- I need all distinct characters that appear in a column in a mysql table, sorted asc
 
-To get all distinct characters in a specific column sorted in ascending order, you can use the following query. This query uses a combination of SUBSTRING and GROUP_CONCAT functions. Please replace your_table_name and your_column_name with the actual table and column names:
+-- To get all distinct characters in a specific column sorted in ascending order, you can use the following query. This query uses a combination of SUBSTRING and GROUP_CONCAT functions. Please replace your_table_name and your_column_name with the actual table and column names:
 
-``SET SESSION group_concat_max_len = 1000000;
+SET SESSION group_concat_max_len = 1000000;
 
 SELECT GROUP_CONCAT(DISTINCT one_char ORDER BY one_char ASC) AS all_distinct_chars
 FROM (
