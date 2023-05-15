@@ -5,17 +5,14 @@ with open('file1.csv', 'r') as f:
     reader = csv.reader(f)
     file1_dict = {row[1]: row[0] for row in reader}
 
-# Read the second file and build a set of URLs
-with open('file2.csv', 'r') as f:
+# Open the second file and a new file for output
+with open('file2.csv', 'r') as f, open('output.csv', 'w', newline='') as out:
     reader = csv.reader(f)
-    file2_urls = set(row[1] for row in reader)
-
-# Open a new file for output
-with open('output.csv', 'w', newline='') as out:
     writer = csv.writer(out)
 
-    # For each URL in the dictionary, write to the output file
-    # only if the URL exists in the set
-    for url, id in file1_dict.items():
-        if url in file2_urls:
-            writer.writerow([id, url])
+    # For each URL in the second file, write to the output file
+    # the ID from the first file and the URL
+    for row in reader:
+        url = row[1]
+        if url in file1_dict:
+            writer.writerow([file1_dict[url], url])
