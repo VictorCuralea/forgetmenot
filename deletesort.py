@@ -11,8 +11,10 @@ with open('file2.csv', 'r') as f, open('output.csv', 'w', newline='') as out:
     writer = csv.writer(out)
 
     # For each URL in the second file, write to the output file
-    # the ID from the first file and the URL
+    # the ID from the first file and the URL, favicon_hash, and favicon_path
     for row in reader:
-        url = row[1]
+        url = row[0]
+        favicon_hash = row[1]
+        favicon_path = row[2]
         if url in file1_dict:
-            writer.writerow([file1_dict[url], url])
+            writer.writerow([file1_dict[url], url, favicon_hash, favicon_path])
